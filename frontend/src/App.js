@@ -7,9 +7,9 @@ import axios from "axios";
 function App() {
   const [level, setLevel] = React.useState(1);
   const [prompt, setPrompt] = React.useState("");
-  const [promptMessage, setPromptMessage] = React.useState("la");
+  const [promptMessage, setPromptMessage] = React.useState("");
   const [promptShow, setPromptShow] = React.useState(false);
-  const [promptResponse, setPromptResponse] = React.useState("hi");
+  const [promptResponse, setPromptResponse] = React.useState("");
   const [promptResponseShow, setPromptResponseShow] = React.useState(false);
   const [password, setPassword] = React.useState("");
   const getResponse = () => {
