@@ -53,5 +53,6 @@ class Service:
                 ],
             )
         except Exception as e:
+            print(e)
             raise HTTPException(status_code=500, detail=str(e))
         return response["choices"][0]["message"]["content"]
