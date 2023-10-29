@@ -24,14 +24,17 @@ function App() {
     setPromptShow(true)
     setPromptAnimation("animate__animated animate__fadeIn")
     setPromptResponse("...")
+    setPromptResponseShow(true)
     axios.post(`${backend}/response`, {level: level, query: prompt})
       .then(res => {
           setPromptResponse(res.data)
-          setPromptResponseShow(true)
           setPromptResponseAnimation("animate__animated animate__fadeIn")
         }
       )
-      .catch(err => alert(err?.response?.data.detail.toString() || err?.message))
+      .catch(err => {
+        setPromptResponseShow(false)
+        alert(err?.response?.data.detail.toString() || err?.message)
+      })
   }
   const guessPassword = () => {
     if (password.trim() === "") return
