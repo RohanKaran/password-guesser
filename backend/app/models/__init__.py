@@ -25,7 +25,10 @@ def generate_random_string():
 
 async def init_models():
     async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
+        try:
+            await conn.run_sync(Base.metadata.create_all)
+        except SQLAlchemyError as e:
+            print(e)
 
     async with SessionLocal() as db:
         try:
