@@ -12,7 +12,7 @@ function App() {
   const [promptResponse, setPromptResponse] = React.useState("");
   const [promptResponseShow, setPromptResponseShow] = React.useState(false);
   const [password, setPassword] = React.useState("");
-  const backend = process.env.REACT_APP_BACKEND
+  const backend = process.env.REACT_APP_BACKEND_URL
   const getResponse = () => {
     if (prompt.trim() === "") return
     setPrompt("")
