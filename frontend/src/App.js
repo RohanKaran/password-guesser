@@ -29,7 +29,10 @@ function App() {
   }
   const guessPassword = () => {
     if (password.trim() === "") return
-    if (password.trim().length < 5 || password.trim().length > 10) alert("Password length must be between 5 and 10")
+    if (password.trim().length < 5 || password.trim().length > 10) {
+      alert("Password length must be between 5 and 10")
+      return
+    }
     setPassword("")
     axios.post(`${backend}/guess`, {level: level, password: password})
       .then(res => {
