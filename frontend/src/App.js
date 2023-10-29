@@ -13,7 +13,8 @@ function App() {
   const [promptResponseShow, setPromptResponseShow] = React.useState(false);
   const [password, setPassword] = React.useState("");
   const backend = process.env.REACT_APP_BACKEND_URL
-  const getResponse = () => {
+  const getResponse = (e) => {
+    e.preventDefault()
     if (prompt.trim() === "") return
     setPrompt("")
     setPromptMessage(prompt)
@@ -82,10 +83,12 @@ function App() {
               <Col/>
             </Row>
           </div>
-          <InputGroup className={"mt-5 mb-5"}>
-            <Form.Control type={"textarea"} value={prompt} onChange={e => setPrompt(e.target.value)}/>
-            <Button type={"submit"} variant="primary" onClick={() => getResponse(prompt)}>Send</Button>
-          </InputGroup>
+          <Form onSubmit={getResponse}>
+            <InputGroup className={"mt-5 mb-5"}>
+              <Form.Control type={"textarea"} value={prompt} onChange={e => setPrompt(e.target.value)}/>
+              <Button type={"submit"} variant="primary">Send</Button>
+            </InputGroup>
+          </Form>
           <Container style={{width: "50%", marginTop: '5rem'}}>
             <h4 className={"mt-5"}>Check password for level {level}</h4>
             <InputGroup className={"mt-3"}>
