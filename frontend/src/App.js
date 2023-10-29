@@ -12,13 +12,14 @@ function App() {
   const [promptResponse, setPromptResponse] = React.useState("");
   const [promptResponseShow, setPromptResponseShow] = React.useState(false);
   const [password, setPassword] = React.useState("");
+  const backend = process.env.REACT_APP_BACKEND
   const getResponse = () => {
     if (prompt.trim() === "") return
     setPrompt("")
     setPromptMessage(prompt)
     setPromptShow(true)
     setPromptResponse("...")
-    axios.post("http://localhost:8000/response", {level: level, query: prompt})
+    axios.post(`${backend}/response`, {level: level, query: prompt})
       .then(res => {
           setPromptResponse(res.data)
           setPromptResponseShow(true)
@@ -29,7 +30,7 @@ function App() {
   const guessPassword = () => {
     if (password.trim() === "") return
     setPassword("")
-    axios.post("http://localhost:8000/guess", {level: level, password: password})
+    axios.post(`${backend}/guess`, {level: level, password: password})
       .then(res => {
         setPromptShow(false)
         setPromptResponseShow(false)
