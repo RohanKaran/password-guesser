@@ -25,7 +25,7 @@ function App() {
           setPromptResponseShow(true)
         }
       )
-      .catch(err => console.log(err))
+      .catch(err => alert(err?.response?.data.detail || err?.message))
   }
   const guessPassword = () => {
     if (password.trim() === "") return
@@ -37,7 +37,7 @@ function App() {
         setLevel(level + 1)
       }
       )
-      .catch(err => console.log(err))
+      .catch(err => alert(err?.response?.data.detail || err?.message))
   }
   return (
     <div className="App" data-bs-theme="dark" style={{wordWrap: "break-word"}}>
