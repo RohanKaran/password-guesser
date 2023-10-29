@@ -2,7 +2,7 @@
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
     <data-source source="LOCAL" name="test" uuid="4961b010-84fb-4345-b23f-baa05bf9caf7">
-      <driver-ref>sqlite.xerial</driver-ref>
+      <driver-ref>a9eae672-9869-44f6-93d4-b9c3eba3e471</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:C:\Users\Rohan Karan\PycharmProjects\password-guesser\backend\test.db</jdbc-url>
