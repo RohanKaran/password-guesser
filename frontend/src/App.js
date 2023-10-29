@@ -3,14 +3,17 @@ import {Button, Col, Container, Form, InputGroup, Row} from 'react-bootstrap';
 import './App.css';
 import {VscAccount, VscHubot} from "react-icons/vsc";
 import axios from "axios";
+import "animate.css";
 
 function App() {
   const [level, setLevel] = React.useState(1);
   const [prompt, setPrompt] = React.useState("");
   const [promptMessage, setPromptMessage] = React.useState("");
   const [promptShow, setPromptShow] = React.useState(false);
+  const [promptAnimation, setPromptAnimation] = React.useState("");
   const [promptResponse, setPromptResponse] = React.useState("");
   const [promptResponseShow, setPromptResponseShow] = React.useState(false);
+  const [promptResponseAnimation, setPromptResponseAnimation] = React.useState("");
   const [password, setPassword] = React.useState("");
   const backend = process.env.REACT_APP_BACKEND_URL
   const getResponse = (e) => {
@@ -19,11 +22,13 @@ function App() {
     setPrompt("")
     setPromptMessage(prompt)
     setPromptShow(true)
+    setPromptAnimation("animate__animated animate__fadeIn")
     setPromptResponse("...")
     axios.post(`${backend}/response`, {level: level, query: prompt})
       .then(res => {
           setPromptResponse(res.data)
           setPromptResponseShow(true)
+          setPromptResponseAnimation("animate__animated animate__fadeIn")
         }
       )
       .catch(err => alert(err?.response?.data.detail.toString() || err?.message))
@@ -58,12 +63,15 @@ function App() {
           <div align={"right"} className={"mb-5"} hidden={!promptShow}>
             <Row style={{margin: 0}}>
               <Col/>
-              <Col sm={promptMessage.length > 50 ? 9 : promptMessage.length > 20 ? 6 : 4} style={{
-                backgroundColor: "blueviolet",
-                borderRadius: "5px",
-                flex: "0 0 auto",
-                textAlign: "right"
-              }}>
+              <Col sm={promptMessage.length > 50 ? 9 : promptMessage.length > 20 ? 6 : 4}
+                   style={{
+                     backgroundColor: "blueviolet",
+                     borderRadius: "5px",
+                     flex: "0 0 auto",
+                     textAlign: "right"
+                   }}
+                   className={promptAnimation}
+              >
                 <div className={"mb-2 mt-2"}>{promptMessage}</div>
               </Col>
               <Col sm={1}><VscAccount size={45}/></Col>
@@ -78,7 +86,9 @@ function App() {
                      borderRadius: "5px",
                      flex: "0 0 auto",
                      textAlign: "left"
-                   }}>
+                   }}
+                    className={promptResponseAnimation}
+              >
                 <div className={"mb-2 mt-2"}>{promptResponse}</div>
               </Col>
               <Col/>
