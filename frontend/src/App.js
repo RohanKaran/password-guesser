@@ -46,7 +46,8 @@ function App() {
   }
   return (
     <div className="App" data-bs-theme="dark" style={{wordWrap: "break-word"}}>
-      <h1 className={"mt-5"}>Password Guesser</h1>
+      <h1 className={"mt-5 mb-0"}>Password Guesser</h1>
+      <p>Guess the password using OpenAI's GPT-3</p>
       <div id={"passed"} hidden={level >= 1 && level <= 3}>
         <h2 className={"mt-5 mb-3"}>Congratulations! you've passed all the levels.</h2>
         <Button variant="primary" onClick={() => window.location.reload()}>Restart</Button>
