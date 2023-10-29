@@ -29,24 +29,25 @@ function App() {
   }
   const guessPassword = () => {
     if (password.trim() === "") return
+    if (password.trim().length < 5 || password.trim().length > 10) alert("Password length must be between 5 and 10")
     setPassword("")
     axios.post(`${backend}/guess`, {level: level, password: password})
       .then(res => {
-        setPromptShow(false)
-        setPromptResponseShow(false)
-        setLevel(level + 1)
-      }
+          setPromptShow(false)
+          setPromptResponseShow(false)
+          setLevel(level + 1)
+        }
       )
-      .catch(err => alert(err?.response?.data.detail || err?.message))
+      .catch(err => alert(err?.response?.data.detail || err?.message || "Wrong password"))
   }
   return (
     <div className="App" data-bs-theme="dark" style={{wordWrap: "break-word"}}>
+      <h1 className={"mt-5"}>Password Guesser</h1>
       <div id={"passed"} hidden={level >= 1 && level <= 3}>
-        <h1 className={"mt-5"}>Congratulations! you've passed all the levels.</h1>
+        <h2 className={"mt-5 mb-3"}>Congratulations! you've passed all the levels.</h2>
         <Button variant="primary" onClick={() => window.location.reload()}>Restart</Button>
       </div>
       <div id={"main"} hidden={level < 1 || level > 3}>
-        <h1 className={"mt-5"}>Password Guesser</h1>
         <h3 className={"mb-5"}>Level {level}</h3>
         <Container>
           <div align={"right"} className={"mb-5"} hidden={!promptShow}>
